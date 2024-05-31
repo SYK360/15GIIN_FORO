@@ -358,6 +358,28 @@ public class BinarySearchTree<AnyType extends
 		return t;
 	}
 
+
+	public int containsTimesElement( AnyType x ) // metodo driver
+	{
+		return containsTimesElement( x, root );
+	}
+
+	private int containsTimesElement( AnyType x, BinaryNode<AnyType> t )
+	{
+		if( t == null )
+			return 0;    //El nodo no pudo ser encontrado, se retorna 0
+
+		// Condición ternaria:
+		// Si el elemento actual del nodo es igual al elemento buscado (t.getElement().equals(x)), sumamos 1.
+		// Si no es igual, sumamos 0.
+		// A esto, sumamos recursivamente el resultado de la búsqueda en el subárbol izquierdo (t.getLeft()).
+		// Luego, sumamos recursivamente el resultado de la búsqueda en el subárbol derecho (t.getRight()).
+		return (t.getElement().equals(x) ? 1 : 0) +
+				containsTimesElement(x, t.getLeft()) +
+				containsTimesElement(x, t.getRight());
+	}
+
+
 	public int num_hojas() {  // metodo driver
 		// devuelve el numero de hojas del arbol
 		return num_hojas(root);
